@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.action.excludePattern" value="/js/.*?" />
+    <constant name="struts.action.excludePattern" value="/styles/.*?" />
+
+    <package name="com.lycode" extends="struts-default">
+
+        <default-action-ref name="search" />
+
+        <global-results>
+            <result name="error">error.jsp</result>
+        </global-results>
+
+
+        <action name="index" class="com.lycode.IndexAction">
+            <result>/WEB-INF/jsp/index.jsp</result>
+        </action>
+
+        <action name="helloWorld" class="helloWorldAction">
+            <result name="input">/jsp/index.jsp</result>
+            <result>/WEB-INF/jsp/helloWorld.jsp</result>
+        </action>
+
+        <action name="delete" class="com.lycode.deleteAction">
+            <result name="success">success.jsp</result>
+        </action>
+
+        <action name="search" class="com.lycode.searchAction">
+            <result name="input">search.jsp</result>
+            <result name="success">result.jsp</result>
+        </action>
+
+        <action name="selectAuthor" class="com.lycode.selectAuthorAction">
+            <result type="chain" name="success">newBook</result>
+        </action>
+
+        <action name="newBook" class="com.lycode.newBookAction" method="execute">
+            <result name="input">addBook.jsp</result>
+            <result name="success">success.jsp</result>
+        </action>
+
+        <action name="updateBook" class="com.lycode.newBookAction" method="update">
+            <result name="input">editBook.jsp</result>
+            <result name="success">success.jsp</result>
+        </action>
+
+        <action name="delete" class="com.lycode.deleteAction">
+            <result name="success">success.jsp</result>
+        </action>
+
+        <action name="showAuthor" class="com.lycode.showAuthorAction">
+            <result name="success">chooseAuthor.jsp</result>
+        </action>
+
+        <action name="newAuthor" class="com.lycode.newAuthorAction">
+            <result name="success" type="redirectAction">newBook</result>
+        </action>
+
+        <action name="detail" class="com.lycode.detailAction">
+            <result name="success">detail.jsp</result>
+        </action>
+
+        <action name="editBook" class="com.lycode.newBookAction" method="update">
+            <result name="input">editBook.jsp</result>
+            <result name="success">success.jsp</result>
+        </action>
+    </package>
+
+</struts>
